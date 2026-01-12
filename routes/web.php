@@ -10,6 +10,9 @@ Route::get('/' , [\App\Http\Controllers\SiteController::class, 'index']);
 Route::get('/login' , [\App\Http\Controllers\auth\LoginController::class, 'login']);
 Route::post('/login' , [\App\Http\Controllers\auth\LoginController::class, 'loginUser']);
 
+//cadastro de usuário
+Route::get('/register' , [\App\Http\Controllers\auth\RegisterController::class, 'index']);
+Route::post('/register' , [\App\Http\Controllers\auth\RegisterController::class, 'registerUser']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard' , [\App\Http\Controllers\SiteController::class, 'dashboard']);

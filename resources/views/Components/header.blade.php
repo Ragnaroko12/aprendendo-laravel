@@ -12,13 +12,17 @@
 @endauth
      {{-- Mostrar algo no header se o usuario não estiver autenticado --}}
 @guest
-    @if (!request()->is('login'))
+    @if (request()->is('login'))
         <nav class=" flex flex-row gap-4 mt-4 ml-auto">
-            <a href="/login" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 rounded hover:bg-amber-400">Login</a>
+            <a href="/" class=" border-2 border-black h-12 bg-amber-300 text-white p-2 rounded hover:bg-amber-400">voltar</a>
+        </nav>
+    @elseif (request()->is('register'))
+         <nav class=" flex flex-row gap-4 mt-4 ml-auto">
+            <a href="/login" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 rounded hover:bg-amber-400">voltar</a>
         </nav>
     @else
         <nav class=" flex flex-row gap-4 mt-4 ml-auto">
-            <a href="/" class=" border-2 border-black h-12 bg-amber-300 text-white p-2 rounded hover:bg-amber-400">voltar</a>
+            <a href="/login" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 rounded hover:bg-amber-400">Login</a>
         </nav>
     @endif
 @endguest
