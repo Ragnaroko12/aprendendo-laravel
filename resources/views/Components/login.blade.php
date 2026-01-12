@@ -1,0 +1,15 @@
+<x-loyaut>
+    <div class=" flex justify-center items-center mt-60">
+        <form action="/login" method="POST" class=" flex flex-col gap-4 border w-230 p-4 rounded">
+            @csrf
+            <h1 class=" text-2xl font-bold">Login</h1>
+            <input type="text" name="email" placeholder="Email" required class=" border p-2 rounded"/>
+            <input type="password" name="password" placeholder="Senha" required class=" border p-2 rounded"/>
+            <button type="submit" class=" bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Entrar</button>
+            <p>Não tem conta? <a href="#" class=" text-blue-500 hover:underline">Cadastre-se</a></p>
+            @error('email')
+                <span class=" text-red-500">{{ $message }}</span>
+            @enderror
+        </form>
+    </div>
+</x-loyaut>
