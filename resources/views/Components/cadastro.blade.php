@@ -1,6 +1,6 @@
 <x-loyaut>
     <div class=" flex justify-center items-center mt-60">
-        <form action="/register" method="POST" class=" flex flex-col gap-4 border w-230 p-4 rounded">
+        <form action="/register" method="POST" class=" bg-white flex flex-col gap-4 border w-230 p-4 rounded">
             @csrf
             <h1 class=" text-2xl font-bold">Cadastro</h1>
             <input type="text" name="name" id=""

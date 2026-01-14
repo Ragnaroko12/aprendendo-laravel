@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @vite('resources/css/app.css')
   </head>
-  <bod class="">
+  <body class=" bg-orange-200">
     <x-header/>
     {{ $slot }}
     <x-foother/>
