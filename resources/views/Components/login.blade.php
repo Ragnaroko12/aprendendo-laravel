@@ -20,7 +20,7 @@
             @error('password')
                 <p class=" font-bold text-red-500">{{ $message }}</p>
             @enderror
-            <button type="submit" class=" bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            <button type="submit" class=" bg-blue-600 text-white p-2 rounded hover:bg-blue-500"
             >Entrar</button>
             <p>Não tem conta? <a href="/register" class=" text-blue-500 hover:underline">Cadastre-se</a></p>
 

@@ -8,6 +8,10 @@
             <nav class=" flex flex-row gap-4 mt-4 ml-auto">
                 <a href="/dashboard" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 cursor-pointer rounded hover:bg-amber-400">Voltar</a>
             </nav>
+        @elseif (request()->is('habits/edit/*'))
+            <nav class=" flex flex-row gap-4 mt-4 ml-auto">
+                <a href="/dashboard" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 rounded cursor-pointer hover:bg-amber-400">Voltar</a>
+            </nav>
         @else
             <nav class=" flex flex-row gap-4 mt-4 ml-auto">
                 <form action="/logout" method="POST">

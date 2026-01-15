@@ -6,6 +6,7 @@ use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class habitController extends Controller
 {
@@ -48,17 +49,18 @@ class habitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Habit $habit)
+    public function edit(Habit $habit): View
     {
-        //
+        return view('components.EditarHabito', compact('habit'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Habit $habit)
+    public function update(HabitRequest $request, Habit $habit)
     {
-        //
+        $habit->update($request->validated());
+        return redirect()->route('dashboard');
     }
 
     /**
