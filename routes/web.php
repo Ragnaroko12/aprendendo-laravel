@@ -22,10 +22,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard' , [SiteController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout' , [LoginController::class, 'logout'])->middleware('auth');
     //rotas de hábitos
-    Route::get('/habits', [habitController::class , 'index']);
-    Route::post('/habits/store', [habitController::class , 'store'])->name('habits.store');
-    Route::delete('/habits/{habit}', [habitController::class , 'destroy'])->name('habits.destroy');
-    Route::get('/habits/edit/{habit}', [habitController::class , 'edit'])->name('habits.edit');
-    Route::put('/habits/store/{habit}', [habitController::class , 'update'])->name('habits.update');
-
+    Route::resource('habits', habitController::class)->except('show, index');
 });

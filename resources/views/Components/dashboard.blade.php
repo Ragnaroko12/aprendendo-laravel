@@ -3,7 +3,7 @@
         <div class="justify-center items-center flex flex-col gap-3">
             <h1 class="text-5xl">Dashboard</h1>
 
-            <a href="/habits" class="bg-white p-2 rounded hover:bg-gray-100 border transition font-medium">
+            <a href="{{ route('habits.create') }}" class="bg-white p-2 rounded hover:bg-gray-100 border transition font-medium">
                 Cadastrar novo hábito
             </a>
         </div>

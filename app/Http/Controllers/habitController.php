@@ -15,7 +15,7 @@ class habitController extends Controller
      */
     public function index()
     {
-        return view('components.CadastrarHabito');
+        //pegar hábitos do usuário autenticado
     }
 
     /**
@@ -23,7 +23,7 @@ class habitController extends Controller
      */
     public function create()
     {
-        //
+        return view('components.CadastrarHabito');
     }
 
     /**
