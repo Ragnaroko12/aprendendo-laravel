@@ -1,42 +1,32 @@
 <x-loyaut>
     <div class="p-5 flex flex-col gap-4">
-        <div class="justify-center items-center flex flex-col gap-3">
-            <h1 class="text-5xl">Dashboard</h1>
 
-            <a href="{{ route('habits.create') }}" class="bg-white p-2 rounded hover:bg-gray-100 border transition font-medium">
-                Cadastrar novo hábito
-            </a>
-        </div>
-
-        <div class="border-2 bg-white w-100 rounded mt-2 flex flex-col gap-2 p-4">
-            <p class="text-2xl">
-                Os hábitos que você tem são:
+        <x-navbar/>
+        <div class="mt-2 flex flex-col gap-2 p-4">
+            <p class="text-2xl text-center font-semibold">
+                {{ date('d/m/y') }}
             </p>
 
             <ul class="flex flex-col gap-2">
                 @forelse ($habits as $item)
-                    <li class="flex items-center gap-2">
+                    <li class="flex flex-row bg-orange-300 shadow-2xl border-2 rounded p-3 items-center gap-3">
+                        @php
+                            $wascompletedToday = $item->habitLogs->where('user_id', auth()->id())
+                            ->where('completed_at', \Carbon\Carbon::today()->toDateString())
+                            ->isNotEmpty();
+                        @endphp
+                        <form action="{{ route('habits.toggle', $item->id) }}" method="post" id="form-{{ $item->id }}">
+                            @csrf
+
+                            <input type="checkbox" name="" class=" w-5 h-5" {{ $item->completed_at ? 'checked' : '' }} {{ $wascompletedToday ? 'checked' : '' }}
+
+                            onchange="document.getElementById('form-{{ $item->id }}').submit()"
+                            />
+                        </form>
                         <span class="font-bold">
-                            {{ $loop->iteration }} - {{ $item->name }}
+                            {{ $item->name }}
                         </span>
 
-                        <span class="text-gray-400">
-                            ({{ $item->habitlogs->count() }})
-                        </span>
-
-                        <div class="ml-auto flex gap-2">
-                            <form action="{{ route('habits.destroy', $item->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="cursor-pointer hover:scale-110 transition">
-                                    <x-icons.lixo/>
-                                </button>
-                            </form>
-                            <a href="{{ route('habits.edit', $item->id) }}" class="cursor-pointer hover:scale-110 transition">
-                                <x-icons.lapis/>
-                            </a>
-                        </div>
                     </li>
                 @empty
                     <li class="text-gray-500">
@@ -47,3 +37,4 @@
         </div>
     </div>
 </x-loyaut>
+

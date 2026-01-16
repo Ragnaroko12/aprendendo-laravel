@@ -6,7 +6,7 @@
             <input type="text" name="name" id=""
             placeholder="Digite seu nome"
             required
-            class=" border p-2 rounded @error('name') border-2 border-red-500 @enderror"/>
+            class="p-2 rounded {{ $errors->has('name') ? 'border-2 border-red-500': 'border' }}"/>
             @error('name')
                 <p class=" font-bold text-red-500">{{ $message }}</p>
             @enderror
@@ -15,7 +15,7 @@
             name="email"
             placeholder="Email"
             required
-            class=" border p-2 rounded @error('email') border-2 border-red-500 @enderror"/>
+            class=" {{ $errors->has('email') ? 'border-2 border-red-500': 'border' }} p-2 rounded "/>
             @error('email')
                 <p class=" font-bold text-red-500">{{ $message }}</p>
             @enderror
@@ -24,13 +24,12 @@
             name="password"
             placeholder="Senha"
             required
-            class=" border p-2 rounded @error('password') border-2 border-red-500 @enderror"/>
-
+            class=" {{ $errors->has('password') ? 'border-2 border-red-500': 'border' }} p-2 rounded"/>
             <input type="password"
             name="password_confirmation"
             placeholder="confirmar senha"
             required
-            class=" border p-2 rounded @error('password') border-2 border-red-500 @enderror">
+            class=" p-2 rounded {{ $errors->has('password') ? 'border-2 border-red-500': 'border' }} ">
             @error('password')
                 <p class=" font-bold text-red-500">{{ $message }}</p>
             @enderror

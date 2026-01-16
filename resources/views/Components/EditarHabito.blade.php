@@ -8,7 +8,7 @@
             @error('name')
                 <p class=" text-red-500 font-bold">{{ $message }}</p>
             @enderror
-            <input type="submit" value="Cadastrar hábito" class=" bg-blue-500 text-white p-2 rounded hover:bg-blue-700 transition"/>
+            <input type="submit" value="Editar hábito" class=" bg-blue-500 text-white p-2 rounded hover:bg-blue-700 transition"/>
         </form>
     </div>
 </x-loyaut>

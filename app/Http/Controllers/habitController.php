@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
+use App\Models\HabitLog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -34,7 +36,7 @@ class habitController extends Controller
         $habit = $request->validated();
 
         Auth::user()->habits()->create($habit);
-        return redirect()->route('dashboard');
+        return redirect()->route('habits.settings');
     }
 
 
@@ -60,7 +62,7 @@ class habitController extends Controller
     public function update(HabitRequest $request, Habit $habit)
     {
         $habit->update($request->validated());
-        return redirect()->route('dashboard');
+        return redirect()->route('habits.settings');
     }
 
     /**
@@ -73,6 +75,34 @@ class habitController extends Controller
         }
 
         $habit->delete();
+        return redirect()->route('habits.settings');
+    }
+
+    public function toggle(Habit $habit)
+    {
+        $today = Carbon::today()->toDateString();
+
+        $log = HabitLog::where('habit_id', $habit->id)
+            ->where('completed_at', $today)
+            ->first();
+
+        if($log){
+            $log->delete();
+        } else {
+            HabitLog::create([
+                'user_id' => Auth::id(),
+                'habit_id' => $habit->id,
+                'completed_at' => $today
+            ]);
+        }
+
         return redirect()->route('dashboard');
+    }
+
+    public function settings()
+    {
+        $habits = Auth::user()->habits;
+
+        return view('components.habitSettings', compact('habits'));
     }
 }

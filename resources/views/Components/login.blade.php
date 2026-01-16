@@ -7,7 +7,7 @@
             name="email"
             placeholder="Email"
             required
-            class=" border p-2 rounded @error('email') border-2 border-red-500 @enderror"/>
+            class="{{ $errors->has('email') ? 'border-2 border-red-500': 'border' }} p-2 rounded"/>
             @error('email')
                 <p class=" font-bold text-red-500">{{ $message }}</p>
             @enderror
@@ -16,7 +16,7 @@
             name="password"
             placeholder="Senha"
             required
-            class=" border p-2 rounded @error('password') border-2 border-red-500 @enderror"/>
+            class=" {{ $errors->has('password') ? 'border-2 border-red-500': 'border' }} p-2 rounded"/>
             @error('password')
                 <p class=" font-bold text-red-500">{{ $message }}</p>
             @enderror

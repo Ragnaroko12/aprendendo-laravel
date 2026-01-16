@@ -4,13 +4,13 @@
     <h1 class=" text-2xl ">Bem vindo {{ Auth::user()->name }}</h1>
 
 
-        @if (request()->is('habits'))
+        @if (request()->is('habits/create'))
             <nav class=" flex flex-row gap-4 mt-4 ml-auto">
-                <a href="/dashboard" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 cursor-pointer rounded hover:bg-amber-400">Voltar</a>
+                <a href="{{ route('habits.settings') }}" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 cursor-pointer rounded hover:bg-amber-400">Voltar</a>
             </nav>
-        @elseif (request()->is('habits/edit/*'))
+        @elseif (request()->is('habits/*/edit'))
             <nav class=" flex flex-row gap-4 mt-4 ml-auto">
-                <a href="/dashboard" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 rounded cursor-pointer hover:bg-amber-400">Voltar</a>
+                <a href="{{ route('habits.settings') }}" class=" border-2 h-12 border-black bg-amber-300 text-white p-2 rounded cursor-pointer hover:bg-amber-400">Voltar</a>
             </nav>
         @else
             <nav class=" flex flex-row gap-4 mt-4 ml-auto">

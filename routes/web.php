@@ -23,4 +23,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/logout' , [LoginController::class, 'logout'])->middleware('auth');
     //rotas de hábitos
     Route::resource('habits', habitController::class)->except('show, index');
+    Route::get('/habits-settings', [habitController::class, 'settings'])->name('habits.settings');
+    Route::post('/habits-toogle/{habit}', [habitController::class, 'toggle'])->name('habits.toggle');
 });
