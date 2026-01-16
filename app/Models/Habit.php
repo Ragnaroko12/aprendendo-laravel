@@ -24,4 +24,12 @@ class Habit extends Model
         {
             return $this->hasMany(HabitLog::class);
         }
+
+    public function wascompletedToday()
+    {
+        return $this->habitLogs
+            ->where('completed_at', \Carbon\Carbon::today()->toDateString())
+            ->isNotEmpty();
+
+    }
 }

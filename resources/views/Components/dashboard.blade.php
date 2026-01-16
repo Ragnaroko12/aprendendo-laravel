@@ -10,15 +10,11 @@
             <ul class="flex flex-col gap-2">
                 @forelse ($habits as $item)
                     <li class="flex flex-row bg-orange-300 shadow-2xl border-2 rounded p-3 items-center gap-3">
-                        @php
-                            $wascompletedToday = $item->habitLogs->where('user_id', auth()->id())
-                            ->where('completed_at', \Carbon\Carbon::today()->toDateString())
-                            ->isNotEmpty();
-                        @endphp
                         <form action="{{ route('habits.toggle', $item->id) }}" method="post" id="form-{{ $item->id }}">
                             @csrf
 
-                            <input type="checkbox" name="" class=" w-5 h-5" {{ $item->completed_at ? 'checked' : '' }} {{ $wascompletedToday ? 'checked' : '' }}
+                            <input type="checkbox" name="" class=" w-5 h-5" {{ $item->completed_at ? 'checked' : '' }}
+                            {{ $item->wascompletedToday() ? 'checked' : '' }}
 
                             onchange="document.getElementById('form-{{ $item->id }}').submit()"
                             />

@@ -6,7 +6,6 @@ use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use App\Models\HabitLog;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -105,4 +104,5 @@ class habitController extends Controller
 
         return view('components.habitSettings', compact('habits'));
     }
+
 }
