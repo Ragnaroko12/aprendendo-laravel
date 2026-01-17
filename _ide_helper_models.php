@@ -43,8 +43,6 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Habit $habit
- * @property-read \Illuminate\Database\Eloquent\Collection<int, HabitLog> $habitLogs
- * @property-read int|null $habit_logs_count
  * @property-read \App\Models\User $user
  * @method static \Database\Factories\HabitLogFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|HabitLog newModelQuery()
