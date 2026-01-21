@@ -6,11 +6,13 @@ use App\Http\Requests\HabitRequest;
 use App\Models\Habit;
 use App\Models\HabitLog;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class habitController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -52,6 +54,7 @@ class habitController extends Controller
      */
     public function edit(Habit $habit): View
     {
+        $this->authorize('update', $habit);
         return view('components.EditarHabito', compact('habit'));
     }
 
@@ -60,6 +63,8 @@ class habitController extends Controller
      */
     public function update(HabitRequest $request, Habit $habit)
     {
+        $this->authorize('update', $habit);
+
         $habit->update($request->validated());
         return redirect()->route('habits.settings');
     }
@@ -69,9 +74,7 @@ class habitController extends Controller
      */
     public function destroy(Habit $habit)
     {
-        if ($habit->user_id !== Auth::id()) {
-            abort(403,'tu não tem permissão para deletar esse hábito.');
-        }
+        $this->authorize('delete', $habit);
 
         $habit->delete();
         return redirect()->route('habits.settings');
@@ -79,6 +82,8 @@ class habitController extends Controller
 
     public function toggle(Habit $habit)
     {
+        $this->authorize('toogle', $habit);
+
         $today = Carbon::today()->toDateString();
 
         $log = HabitLog::where('habit_id', $habit->id)
